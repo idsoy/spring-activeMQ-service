@@ -4,9 +4,7 @@ import java.util.ArrayList;
 
 import org.llh.message.common.LogUtil;
 import org.llh.message.service.MessageServerService;
-import org.springframework.stereotype.Service;
 
-@Service
 public class MessageServerServiceImpl implements MessageServerService {
 
 	@Override

@@ -13,7 +13,7 @@
     
 	<bean id="connectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
 		<property name="brokerURL">
-			<value>tcp://192.168.1.10:61616</value>
+			<value>${mq.url}</value>
 		</property>
 	</bean>
 
@@ -26,19 +26,19 @@
 	
 	<!-- 消息队列-站内信 -->
 	<bean id="tipMessageQueue" class="org.apache.activemq.command.ActiveMQQueue">
-		<constructor-arg value="llh.org.message.tip.queue" />
+		<constructor-arg value="${mq.tip.queue}" />
 	</bean>
 	
 	<!-- 消息队列-站内信 -->
 	<bean id="tipMessageListQueue" class="org.apache.activemq.command.ActiveMQQueue">
-		<constructor-arg value="llh.org.message.tip.queue.list" />
+		<constructor-arg value="${mq.tip.queue.list}" />
 	</bean>
 	
 	<jms:listener-container>
 		<!-- 站内信监听器 -->
-		<jms:listener destination="org.llh.message.tip.queue" ref="messageServerService" method="receiveTipMessage"/>
+		<jms:listener destination="${mq.tip.queue}" ref="messageServerService" method="receiveTipMessage"/>
 		<!-- 批量发送站内信监听器 -->
-		<jms:listener destination="org.llh.message.tip.queue.list" ref="messageServerService" method="receiveTipMessageList"/>
+		<jms:listener destination="${mq.tip.queue.list}" ref="messageServerService" method="receiveTipMessageList"/>
 	</jms:listener-container>
 	
 </beans>
